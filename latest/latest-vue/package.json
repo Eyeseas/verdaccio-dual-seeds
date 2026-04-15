@@ -1,0 +1,125 @@
+{
+  "name": "latest-vue",
+  "dependencies": {
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
+
+    "@vueuse/core": "^14.2.1",
+    "@vueuse/head": "^2.0.0",
+    "@vueuse/integrations": "^14.2.1",
+    "@vueuse/motion": "^3.0.3",
+
+    "element-plus": "^2.13.7",
+    "@element-plus/icons-vue": "^2.3.2",
+    "ant-design-vue": "^4.2.6",
+    "@ant-design/icons-vue": "^7.0.1",
+    "naive-ui": "^2.44.1",
+    "vant": "^4.9.24",
+    "primevue": "^4.5.5",
+
+    "echarts": "^6.0.0",
+    "vue-echarts": "^8.0.1",
+    "chart.js": "^4.5.1",
+
+    "axios": "^1.15.0",
+    "ofetch": "^1.5.1",
+
+    "@tanstack/vue-query": "^5.99.0",
+    "@tanstack/vue-query-devtools": "^6.1.16",
+    "@tanstack/query-core": "^5.99.0",
+    "@tanstack/vue-table": "^8.21.3",
+    "@tanstack/table-core": "^8.21.3",
+    "@tanstack/vue-virtual": "^3.13.23",
+    "@tanstack/virtual-core": "^3.13.23",
+    "@tanstack/vue-form": "^1.29.0",
+    "@tanstack/form-core": "^1.29.0",
+    "@tanstack/vue-store": "^0.10.0",
+    "@tanstack/store": "^0.10.0",
+
+    "vee-validate": "^4.15.1",
+    "@vee-validate/zod": "^4.15.1",
+    "zod": "^4.3.6",
+
+    "vue-i18n": "^11.3.2",
+
+    "dayjs": "^1.11.20",
+    "lodash-es": "^4.18.1",
+
+    "nprogress": "^0.2.0",
+
+    "md-editor-v3": "^6.4.2",
+    "@kangc/v-md-editor": "^1.7.12",
+    "vditor": "^3.11.2",
+    "markdown-it": "^14.1.1",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-highlightjs": "^4.3.0",
+    "markdown-it-vue": "^1.1.7",
+    "vue-markdown-render": "^2.3.0",
+    "marked": "^18.0.0",
+    "marked-highlight": "^2.2.4",
+    "turndown": "^7.2.4",
+    "highlight.js": "^11.11.1",
+    "shiki": "^4.0.2",
+    "prismjs": "^1.30.0",
+    "katex": "^0.16.45",
+    "mermaid": "^11.14.0",
+
+    "@vue-office/docx": "^1.6.3",
+    "@vue-office/excel": "^1.7.14",
+    "@vue-office/pdf": "^2.0.10",
+    "vue-pdf-embed": "^2.1.4",
+    "docx-preview": "^0.3.7",
+    "mammoth": "^1.12.0",
+    "xlsx": "^0.18.5",
+    "exceljs": "^4.4.0",
+    "pdfjs-dist": "^5.6.205",
+    "pdf-lib": "^1.17.1",
+    "jspdf": "^4.2.1",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.14.0",
+    "file-saver": "^2.0.5",
+
+    "gsap": "^3.15.0",
+    "lottie-web": "^5.13.0",
+    "vue3-lottie": "^3.3.1",
+    "@lottiefiles/dotlottie-react": "^0.19.0",
+    "animejs": "^4.3.6",
+    "aos": "^2.3.4",
+    "tsparticles": "^3.9.1",
+    "@tsparticles/vue3": "^3.0.1",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/slim": "^3.9.1",
+    "vue-typed-js": "^0.1.2",
+    "vanilla-tilt": "^1.8.1",
+    "smooth-scrollbar": "^8.8.4",
+    "locomotive-scroll": "^5.0.1",
+    "canvas-confetti": "^1.9.4"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2",
+    "vue-tsc": "^3.2.6",
+    "vite": "^8.0.8",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitejs/plugin-vue-jsx": "^5.1.5",
+
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^32.0.0",
+    "unplugin-icons": "^23.0.1",
+    "@iconify/json": "^2.2.462",
+
+    "unocss": "^66.6.8",
+    "sass": "^1.99.0",
+
+    "@vue/test-utils": "^2.4.6",
+    "vitest": "^4.1.4"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "os": ["win32", "darwin", "linux", "current"],
+      "cpu": ["x64", "arm64"],
+      "libc": ["glibc", "musl"]
+    }
+  }
+}
