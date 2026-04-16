@@ -29,8 +29,8 @@
     "@ant-design/pro-list": "^2.6.9",
     "@ant-design/pro-descriptions": "^2.6.10",
     "@ant-design/pro-card": "^2.10.0",
-    "@ant-design/x": "^1.0.0",
-    "@ant-design/x-markdown": "^1.0.0",
+    "@ant-design/x": "^2.0.0",
+    "@ant-design/x-markdown": "^2.0.0",
     "@ant-design/charts": "^2.6.7",
     "@ant-design/plots": "^2.6.8",
     "@ant-design/graphs": "^2.1.1",
@@ -76,7 +76,7 @@
 
     "slate": "^0.103.0",
     "slate-dom": "^0.111.0",
-    "slate-react": "^0.103.0",
+    "slate-react": "^0.104.0",
 
     "framer-motion": "^10.16.0",
     "react-spring": "^9.7.3",
