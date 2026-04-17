@@ -5,12 +5,10 @@
     "vue-router": "^5.0.4",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",
-
     "@vueuse/core": "^14.2.1",
     "@vueuse/head": "^2.0.0",
     "@vueuse/integrations": "^14.2.1",
     "@vueuse/motion": "^3.0.3",
-
     "element-plus": "^2.13.7",
     "@element-plus/icons-vue": "^2.3.2",
     "ant-design-vue": "^4.2.6",
@@ -18,14 +16,11 @@
     "naive-ui": "^2.44.1",
     "vant": "^4.9.24",
     "primevue": "^4.5.5",
-
     "echarts": "^6.0.0",
     "vue-echarts": "^8.0.1",
     "chart.js": "^4.5.1",
-
     "axios": "^1.15.0",
     "ofetch": "^1.5.1",
-
     "@tanstack/vue-query": "^5.99.0",
     "@tanstack/vue-query-devtools": "^6.1.16",
     "@tanstack/query-core": "^5.99.0",
@@ -37,18 +32,13 @@
     "@tanstack/form-core": "^1.29.0",
     "@tanstack/vue-store": "^0.10.0",
     "@tanstack/store": "^0.10.0",
-
     "vee-validate": "^4.15.1",
     "@vee-validate/zod": "^4.15.1",
     "zod": "^4.3.6",
-
     "vue-i18n": "^11.3.2",
-
     "dayjs": "^1.11.20",
     "lodash-es": "^4.18.1",
-
     "nprogress": "^0.2.0",
-
     "md-editor-v3": "^6.4.2",
     "@kangc/v-md-editor": "^1.7.12",
     "vditor": "^3.11.2",
@@ -65,7 +55,6 @@
     "prismjs": "^1.30.0",
     "katex": "^0.16.45",
     "mermaid": "^11.14.0",
-
     "@vue-office/docx": "^1.6.3",
     "@vue-office/excel": "^1.7.14",
     "@vue-office/pdf": "^2.0.10",
@@ -80,7 +69,6 @@
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.14.0",
     "file-saver": "^2.0.5",
-
     "gsap": "^3.15.0",
     "lottie-web": "^5.13.0",
     "vue3-lottie": "^3.3.1",
@@ -103,23 +91,32 @@
     "vite": "^8.0.8",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vitejs/plugin-vue-jsx": "^5.1.5",
-
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.0.0",
     "unplugin-icons": "^23.0.1",
     "@iconify/json": "^2.2.462",
-
     "unocss": "^66.6.8",
     "sass": "^1.99.0",
-
     "@vue/test-utils": "^2.4.6",
     "vitest": "^4.1.4"
   },
   "pnpm": {
     "supportedArchitectures": {
-      "os": ["win32", "darwin", "linux", "current"],
-      "cpu": ["x64", "arm64"],
-      "libc": ["glibc", "musl"]
+      "os": [
+        "win32",
+        "darwin",
+        "linux",
+        "current"
+      ],
+      "cpu": [
+        "x64",
+        "arm64"
+      ],
+      "libc": [
+        "glibc",
+        "musl"
+      ]
     }
-  }
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }

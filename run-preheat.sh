@@ -240,11 +240,22 @@ invoke_preheat() {
     echo "${color}<<< [node${node_ver}/${category}/${folder_name}] ${tag}  elapsed=${elapsed}s${C_RESET}"
     echo
 
-    # 追加到汇总文件（多进程并发时使用 flock 防止竞争）
-    {
-        flock 9
-        printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$node_ver" "$category" "$folder_name" "$ok" "$elapsed" "$log_file" >> "$SUMMARY_FILE"
-    } 9>>"$SUMMARY_FILE.lock"
+    # 追加到汇总文件（多进程并发时加锁防止竞争，兼容 macOS/Linux）
+    local line
+    line=$(printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$node_ver" "$category" "$folder_name" "$ok" "$elapsed" "$log_file")
+    if command -v flock &>/dev/null; then
+        { flock 9; echo "$line" >> "$SUMMARY_FILE"; } 9>>"$SUMMARY_FILE.lock"
+    else
+        perl -e '
+            use Fcntl qw(:flock);
+            open(my $lk, ">>", $ARGV[0].".lock") or die $!;
+            flock($lk, LOCK_EX) or die $!;
+            open(my $fh, ">>", $ARGV[0]) or die $!;
+            print $fh $ARGV[1]."\n";
+            close $fh;
+            close $lk;
+        ' "$SUMMARY_FILE" "$line"
+    fi
 }
 
 export -f invoke_preheat

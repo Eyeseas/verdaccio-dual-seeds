@@ -3,20 +3,16 @@
   "dependencies": {
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-
     "next": "^16.2.3",
     "react-router-dom": "^7.14.1",
-
     "zustand": "^5.0.12",
     "zustand-x": "^6.2.1",
     "jotai": "^2.19.1",
     "@reduxjs/toolkit": "^2.11.2",
     "react-redux": "^9.2.0",
     "swr": "^2.4.1",
-
     "ai": "^6.0.161",
     "@ai-sdk/openai": "^3.0.53",
-
     "antd": "^6.3.5",
     "@ant-design/icons": "^6.1.1",
     "@ant-design/colors": "^8.0.1",
@@ -37,7 +33,6 @@
     "@ant-design/plots": "^2.6.8",
     "@ant-design/graphs": "^2.1.1",
     "@ant-design/web3": "^1.26.1",
-
     "@mui/material": "^9.0.0",
     "@mui/icons-material": "^9.0.0",
     "@emotion/react": "^11.14.0",
@@ -51,7 +46,6 @@
     "lucide-react": "^1.8.0",
     "@iconify/react": "^6.0.2",
     "react-icons": "^5.6.0",
-
     "@tanstack/react-query": "^5.99.0",
     "@tanstack/react-query-devtools": "^5.99.0",
     "@tanstack/react-query-persist-client": "^5.99.0",
@@ -70,19 +64,15 @@
     "@tanstack/store": "^0.10.0",
     "@tanstack/react-pacer": "^0.21.1",
     "@tanstack/react-ranger": "^0.0.5",
-
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
-
     "@tiptap/pm": "^3.22.3",
     "@tiptap/react": "^3.22.3",
     "@tiptap/starter-kit": "^3.22.3",
-
     "slate": "^0.124.1",
     "slate-dom": "^0.124.1",
     "slate-react": "^0.124.0",
-
     "framer-motion": "^12.38.0",
     "motion": "^12.38.0",
     "react-spring": "^10.0.3",
@@ -110,7 +100,6 @@
     "react-tilt": "^1.0.2",
     "vanilla-tilt": "^1.8.1",
     "canvas-confetti": "^1.9.4",
-
     "react-markdown": "^10.1.0",
     "@uiw/react-md-editor": "^4.1.0",
     "@uiw/react-markdown-preview": "^5.2.0",
@@ -143,7 +132,6 @@
     "shiki": "^4.0.2",
     "katex": "^0.16.45",
     "mermaid": "^11.14.0",
-
     "swagger-ui-react": "^5.32.3",
     "swagger-ui-dist": "^5.32.3",
     "redoc": "^2.5.2",
@@ -160,24 +148,19 @@
     "xlsx": "^0.18.5",
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
-
     "react-dropzone": "^15.0.0",
-
     "react-hook-form": "^7.72.1",
     "@hookform/resolvers": "^5.2.2",
     "formik": "^2.4.9",
     "yup": "^1.7.1",
     "zod": "^4.3.6",
-
     "axios": "^1.15.0",
     "ky": "^2.0.1",
     "ofetch": "^1.5.1",
-
     "clsx": "^2.1.1",
     "classnames": "^2.5.1",
     "tailwind-merge": "^3.5.0",
     "class-variance-authority": "^0.7.1",
-
     "dayjs": "^1.11.20",
     "date-fns": "^4.1.0",
     "lodash-es": "^4.18.1",
@@ -187,10 +170,8 @@
     "immer": "^11.1.4",
     "immer-reducer": "^0.7.13",
     "use-immer": "^0.11.0",
-
     "i18next": "^26.0.4",
     "react-i18next": "^17.0.3",
-
     "ahooks": "^3.9.7",
     "@uidotdev/usehooks": "^2.4.1",
     "usehooks-ts": "^3.1.1",
@@ -199,15 +180,12 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-virtuoso": "^4.18.5",
     "react-window": "^2.2.7",
-
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.6",
     "recharts": "^3.8.1",
-
     "wavesurfer.js": "^7.12.6",
     "wavesurfer-multitrack": "^0.4.12",
     "@wavesurfer/react": "^1.0.12",
-
     "idb": "^8.0.3"
   },
   "devDependencies": {
@@ -222,12 +200,24 @@
   },
   "pnpm": {
     "supportedArchitectures": {
-      "os": ["win32", "darwin", "linux", "current"],
-      "cpu": ["x64", "arm64"],
-      "libc": ["glibc", "musl"]
+      "os": [
+        "win32",
+        "darwin",
+        "linux",
+        "current"
+      ],
+      "cpu": [
+        "x64",
+        "arm64"
+      ],
+      "libc": [
+        "glibc",
+        "musl"
+      ]
     },
     "overrides": {
       "@react-pdf/image": "3.0.4"
     }
-  }
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }
