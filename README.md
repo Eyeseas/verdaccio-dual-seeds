@@ -11,14 +11,19 @@
 - `stable/`：旧版本快照（React 18 + antd 5 + Next 14 + slate 0.10x + ...）
 - `latest/`：滚动最新版（React 19 + antd 6 + Next 16 + slate 0.124 + ...）
 
-每套各有 4 个子项目：
+每套各有 9 个子项目：
 
 | 子项目 | 覆盖范围 |
 |---|---|
-| `*-infra`   | 构建 / 测试 / lint 工具链（TypeScript、eslint、vite、webpack、jest/vitest、turbo…） |
-| `*-node`    | 后端、ORM、HTTP、队列、校验（Nest/Fastify/Koa、Prisma/TypeORM、bullmq、zod…） |
-| `*-react`   | React 全家桶（antd、MUI、TanStack、dnd-kit、tiptap、framer-motion…） |
-| `*-vue`     | Vue 生态（element-plus、ant-design-vue、naive-ui、vueuse、tanstack-vue…） |
+| `*-infra`    | 构建 / lint / 打包工具链（TypeScript、eslint、vite、webpack、rollup、esbuild、swc、turbo…） |
+| `*-node`     | 后端、ORM、HTTP、队列、校验（Nest/Fastify/Koa、Prisma/TypeORM、bullmq、zod…） |
+| `*-react`    | React 全家桶（antd、MUI、TanStack、dnd-kit、tiptap、framer-motion…） |
+| `*-vue`      | Vue 生态（element-plus、ant-design-vue、naive-ui、vueuse、tanstack-vue…） |
+| `*-testing`  | 测试矩阵（vitest、jest、playwright、cypress、puppeteer、msw、storybook、testcontainers、faker、fast-check、stryker…） |
+| `*-ai`       | AI/LLM 生态（Vercel AI SDK、OpenAI、Anthropic、Google/Gemini、LangChain、LlamaIndex、ONNX、transformers、Pinecone/Weaviate/Qdrant/Chroma、MCP…） |
+| `*-mobile`   | Expo / React Native 全家桶（expo-router、reanimated、skia、flash-list、nativewind、tamagui、firebase、navigation…） |
+| `*-realtime` | 实时 / 协作（Yjs、Automerge、Liveblocks、Hocuspocus、socket.io、PartyKit、tldraw-sync、Replicache、TinyBase、Loro、y-sweet…） |
+| `*-docs`     | 文档 / 站点生成（vitepress、docusaurus、nextra、astro+starlight、rspress、fumadocs、typedoc、slidev、algolia/docsearch、pagefind…） |
 
 ### 为什么要做 Node 版本矩阵
 
@@ -37,12 +42,22 @@ verdaccio-dual-seeds/
 │   ├── stable-infra/package.json
 │   ├── stable-node/package.json
 │   ├── stable-react/package.json
-│   └── stable-vue/package.json
+│   ├── stable-vue/package.json
+│   ├── stable-testing/package.json
+│   ├── stable-ai/package.json
+│   ├── stable-mobile/package.json
+│   ├── stable-realtime/package.json
+│   └── stable-docs/package.json
 ├── latest/
 │   ├── latest-infra/package.json
 │   ├── latest-node/package.json
 │   ├── latest-react/package.json
-│   └── latest-vue/package.json
+│   ├── latest-vue/package.json
+│   ├── latest-testing/package.json
+│   ├── latest-ai/package.json
+│   ├── latest-mobile/package.json
+│   ├── latest-realtime/package.json
+│   └── latest-docs/package.json
 └── logs/                    # 运行时自动生成，含每项目日志 + summary JSON
 ```
 
@@ -79,7 +94,7 @@ for v in 18 20 22 24; do fnm install $v; done
 # 1) 扫一遍依赖范围，确保没有"写错的版本号"（~10s）
 ./check-ranges.sh
 
-# 2) 全矩阵预热（4 × 8 = 32 次 pnpm install，首次会久）
+# 2) 全矩阵预热（4 × 18 = 72 次 pnpm install，首次会久）
 ./run-preheat.sh
 
 # 3) 看 summary
