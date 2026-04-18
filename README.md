@@ -11,7 +11,7 @@
 - `stable/`：旧版本快照（React 18 + antd 5 + Next 14 + slate 0.10x + ...）
 - `latest/`：滚动最新版（React 19 + antd 6 + Next 16 + slate 0.124 + ...）
 
-每套各有 10 个子项目：
+每套各有 12 个子项目：
 
 | 子项目 | 覆盖范围 |
 |---|---|
@@ -25,6 +25,8 @@
 | `*-realtime` | 实时 / 协作（Yjs、Automerge、Liveblocks、Hocuspocus、socket.io、PartyKit、tldraw-sync、Replicache、TinyBase、Loro、y-sweet…） |
 | `*-docs`     | 文档 / 站点生成（vitepress、docusaurus、nextra、astro+starlight、rspress、fumadocs、typedoc、slidev、algolia/docsearch、pagefind…） |
 | `*-viz`      | 可视化全家桶：地图（mapbox-gl、maplibre-gl、deck.gl、leaflet、openlayers、pmtiles）、地理计算（turf、proj4、topojson、supercluster）、图表（echarts、chart.js、recharts、plotly、apexcharts、highcharts、nivo、visx、victory、billboard）、AntV 全套（G2/G6/L7/S2/X6/F2/G/Graphin）、3D（three.js、@react-three/\*、postprocessing、gsap）、图/网络（cytoscape、sigma、graphology、dagre、elkjs、reactflow、@xyflow）、D3 全套… |
+| `*-scaffold` | 项目脚手架：`create-*`（next/vite/vue/astro/svelte/solid/qwik/t3/tauri/electron-vite/turbo/nx/cloudflare/strapi/payload）、框架 CLI（@angular/cli、@nestjs/cli、@vue/cli、nuxi、astro、@remix-run/dev、gatsby-cli、quasar、storybook、shadcn/shadcn-vue/shadcn-svelte）、模板拉取（degit、tiged、giget）、通用生成器（yo、yeoman-generator、plop、hygen、scaffdog） |
+| `*-devops`   | 日常脚本/发版/部署：monorepo（nx、turbo、lerna、rush、moonrepo）、发版（changesets、semantic-release、np、release-it、release-please、conventional-changelog）、git hooks/提交（husky、lefthook、simple-git-hooks、lint-staged、commitlint、commitizen、cz-git）、脚本运行（cross-env、dotenv-cli、dotenvx、npm-run-all、concurrently、wait-on、tsx、ts-node、esno、nodemon、pm2）、文件/静态（rimraf、del-cli、shx、cpy-cli、http-server、serve、sirv-cli）、部署 CLI（vercel、netlify-cli、wrangler、firebase-tools、serverless、sst）、桌面打包（electron、electron-builder、@electron-forge/cli、@tauri-apps/cli） |
 
 ### 为什么要做 Node 版本矩阵
 
@@ -49,7 +51,9 @@ verdaccio-dual-seeds/
 │   ├── stable-mobile/package.json
 │   ├── stable-realtime/package.json
 │   ├── stable-docs/package.json
-│   └── stable-viz/package.json
+│   ├── stable-viz/package.json
+│   ├── stable-scaffold/package.json
+│   └── stable-devops/package.json
 ├── latest/
 │   ├── latest-infra/package.json
 │   ├── latest-node/package.json
@@ -60,7 +64,9 @@ verdaccio-dual-seeds/
 │   ├── latest-mobile/package.json
 │   ├── latest-realtime/package.json
 │   ├── latest-docs/package.json
-│   └── latest-viz/package.json
+│   ├── latest-viz/package.json
+│   ├── latest-scaffold/package.json
+│   └── latest-devops/package.json
 └── logs/                    # 运行时自动生成，含每项目日志 + summary JSON
 ```
 
@@ -97,7 +103,7 @@ for v in 18 20 22 24; do fnm install $v; done
 # 1) 扫一遍依赖范围，确保没有"写错的版本号"（~10s）
 ./check-ranges.sh
 
-# 2) 全矩阵预热（4 × 20 = 80 次 pnpm install，首次会久）
+# 2) 全矩阵预热（4 × 24 = 96 次 pnpm install，首次会久）
 ./run-preheat.sh
 
 # 3) 看 summary
