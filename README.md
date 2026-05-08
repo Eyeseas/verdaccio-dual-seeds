@@ -15,7 +15,7 @@
 
 | 子项目 | 覆盖范围 |
 |---|---|
-| `*-infra`    | 构建 / lint / 打包 / CSS 工具链（TypeScript、eslint、vite、webpack、rollup、esbuild、swc、turbo、Tailwind v3/v4、PostCSS 插件全家桶、cssnano、stylelint…） |
+| `*-infra`    | 构建 / lint / 打包 / CSS 工具链（TypeScript、ESLint 全家桶、Babel 全家桶、vite、webpack、rollup、esbuild、swc、turbo、Tailwind v3/v4、PostCSS 插件全家桶、cssnano、stylelint…） |
 | `*-node`     | 后端、ORM、HTTP、队列、校验（Nest/Fastify/Koa、Prisma/TypeORM、bullmq、zod…） |
 | `*-react`    | React 全家桶（antd、MUI、TanStack、dnd-kit、tiptap、framer-motion…） |
 | `*-vue`      | Vue 生态（element-plus、ant-design-vue、naive-ui、vueuse、tanstack-vue…） |
