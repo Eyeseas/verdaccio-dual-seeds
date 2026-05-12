@@ -29,7 +29,8 @@
 set -u
 
 # ---- 默认参数 ----
-REGISTRY="https://npm.home.ueyeseas.com:8443/"
+# REGISTRY 默认从 .npmrc 读取（npm config get registry），允许 --registry 覆盖
+REGISTRY=""
 UPSTREAM="https://registry.npmjs.org/"
 CATEGORIES_RAW="stable,latest"
 ONLY_RAW=""
@@ -87,7 +88,18 @@ else
     FILTER_PACKAGES=()
 fi
 
+# ---- 从 .npmrc 解析 registry（如未通过 --registry 指定）----
+if [ -z "$REGISTRY" ]; then
+    REGISTRY=$(npm config get registry 2>/dev/null | tr -d '[:space:]')
+    if [ -z "$REGISTRY" ]; then
+        echo "${C_RED}[ERROR] 无法从 .npmrc 获取 registry，请通过 --registry 指定${C_RESET}" >&2
+        exit 1
+    fi
+    echo "${C_GREEN}[info] 从 .npmrc 读取 registry: $REGISTRY${C_RESET}"
+fi
+
 # ---- preflight ----
+command -v curl >/dev/null 2>&1 || { echo "${C_RED}[ERROR] 需要 curl${C_RESET}" >&2; exit 1; }
 command -v npm >/dev/null 2>&1 || { echo "${C_RED}[ERROR] 需要 npm${C_RESET}" >&2; exit 1; }
 command -v pnpm >/dev/null 2>&1 || { echo "${C_RED}[ERROR] 需要 pnpm${C_RESET}" >&2; exit 1; }
 command -v python3 >/dev/null 2>&1 || { echo "${C_RED}[ERROR] 需要 python3${C_RESET}" >&2; exit 1; }
@@ -113,7 +125,8 @@ mkdir -p "$LOG_DIR" "$PROGRESS_DIR"
 # ============================================================
 
 PKGS_FILE=$(mktemp)
-trap 'rm -f "$PKGS_FILE"' EXIT
+COUNTER_DIR=$(mktemp -d)
+trap 'rm -f "$PKGS_FILE"; rm -rf "$COUNTER_DIR"' EXIT
 
 if [ "${#FILTER_PACKAGES[@]}" -gt 0 ]; then
     # 手动指定包名，跳过 Phase 1
@@ -126,7 +139,7 @@ else
 
     DIRECT_PKGS_FILE=$(mktemp)
     LOCKFILE_PKGS_FILE=$(mktemp)
-    trap 'rm -f "$PKGS_FILE" "$DIRECT_PKGS_FILE" "$LOCKFILE_PKGS_FILE"' EXIT
+    trap 'rm -f "$PKGS_FILE" "$DIRECT_PKGS_FILE" "$LOCKFILE_PKGS_FILE"; rm -rf "$COUNTER_DIR"' EXIT
 
     # Step 1a: 从 package.json 收集直接依赖
     for cat in "${CATEGORIES[@]}"; do
@@ -362,10 +375,22 @@ for v in data:
 
     echo "${C_CYAN}[fetch] $pkg — $ver_count versions${C_RESET}"
 
+    # 构造 tarball URL 并用 curl 请求（只触发 Verdaccio 缓存，不写本地 npm cache）
+    # scoped: @scope/name -> registry/@scope/name/-/name-ver.tgz
+    # normal: name -> registry/name/-/name-ver.tgz
+    local pkg_basename
+    if [[ "$pkg" == @*/* ]]; then
+        pkg_basename="${pkg#*/}"
+    else
+        pkg_basename="$pkg"
+    fi
+    local base_url="${registry%/}/${pkg}/-/${pkg_basename}"
+
     local ok=0 fail=0
     while IFS= read -r ver; do
         [ -z "$ver" ] && continue
-        if npm cache add "${pkg}@${ver}" --registry "$registry" >>"$pkg_log" 2>&1; then
+        local tarball_url="${base_url}-${ver}.tgz"
+        if curl -sSf -o /dev/null "$tarball_url" >>"$pkg_log" 2>&1; then
             ok=$((ok + 1))
         else
             fail=$((fail + 1))
@@ -390,11 +415,24 @@ for v in data:
 export -f fetch_all_for_package
 export C_RED C_GREEN C_YELLOW C_CYAN C_MAGENTA C_DIM C_RESET
 
+# ---- 重置进度计数器 ----
+rm -f "$COUNTER_DIR"/*
+
 TOTAL_START="$(date +%s)"
 
-cat "$PKGS_FILE" | xargs -P "$PARALLEL_JOBS" -I{} bash -c \
-    'fetch_all_for_package "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"' \
-    _ {} "$REGISTRY" "$UPSTREAM" "$RECENT" "$SKIP_PRERELEASE" "$DRY_RUN" "$RESUME" "$DONE_FILE" "$PROGRESS_DIR"
+cat "$PKGS_FILE" | xargs -P "$PARALLEL_JOBS" -I{} bash -c '
+    pkg="$1"; registry="$2"; upstream="$3"; recent="$4"; skip_pre="$5"
+    dry_run="$6"; resume="$7"; done_file="$8"; progress_dir="$9"
+    counter_dir="${10}"; total="${11}"
+
+    fetch_all_for_package "$pkg" "$registry" "$upstream" "$recent" "$skip_pre" "$dry_run" "$resume" "$done_file" "$progress_dir"
+
+    # 用包名作为唯一文件计数（无竞争、无复用）
+    touch "$counter_dir/${pkg//\//__}"
+    current=$(ls "$counter_dir" | wc -l | tr -d " ")
+    pct=$(( current * 100 / total ))
+    echo "${C_DIM}  [$current/$total] ($pct%) 已处理${C_RESET}"
+' _ {} "$REGISTRY" "$UPSTREAM" "$RECENT" "$SKIP_PRERELEASE" "$DRY_RUN" "$RESUME" "$DONE_FILE" "$PROGRESS_DIR" "$COUNTER_DIR" "$TOTAL_PKGS"
 
 TOTAL_END="$(date +%s)"
 TOTAL_ELAPSED=$(( TOTAL_END - TOTAL_START ))
